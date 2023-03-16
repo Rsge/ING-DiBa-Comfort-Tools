@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name           ING DiBa Comfort Tools
 
-// @description    Automatically refreshes login and keeps stocks updating live on German DiBa site.
-// @description:de Erneuert automatisch den Login auf der DiBa website und hält die Kurse im Live-Modus.
+// @description    A few tools to make the German DiBa sites more bearable.
+// @description:de Ein paar Tools, um die DiBa-Websiten erträglicher zu gestalten.
 
-// @version        0.2.0
+// @version        0.3.0
 // @author         Rsge
 // @copyright      2023+, Jan G. (Rsge)
 // @license        Mozilla Public License 2.0
@@ -38,4 +38,20 @@
   window.setInterval(function() {
     window.dispatchEvent(new MouseEvent("mousemove"));
   }, millisecondsToWait);
+
+  // (Try to) remove ad stuff.
+  var blockedIDs = new Array("id40a63666", "id76b7d7414", "id81ce80b32", "id4bff0ea7", "id40a54bb5");
+  var node
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      node = mutation.addedNodes[0];
+      if (mutation.addedNodes[0] != null && blockedIDs.indexOf(node.id) != -1) {
+        node.remove();
+      }
+    });
+  });
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
 })();
