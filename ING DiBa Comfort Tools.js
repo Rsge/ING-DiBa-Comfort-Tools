@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name           ING DiBa Comfort Tools
+// @name:de        ING DiBa Komfort-Tools
 
-// @description    A few tools to make the German DiBa sites more bearable.
-// @description:de Ein paar Tools, um die DiBa-Websiten erträglicher zu gestalten.
+// @description    A few tools to make the German DiBa sites more bearable. Refreshes login & stocks and tries to close ads.
+// @description:de Ein paar Tools, um die DiBa-Webseiten erträglicher zu gestalten. Erneuert Login & Kurse und versucht, Werbung zu schließen.
 
-// @version        0.3.0
+// @version        0.3.1
 // @author         Rsge
 // @copyright      2023+, Jan G. (Rsge)
 // @license        Mozilla Public License 2.0
@@ -25,7 +26,9 @@
 (function() {
   'use strict';
 
-  // -- Auto-Refreshers --
+  /*
+   * Auto-Refreshers
+   */
   var millisecondsToWait
   const minsToMSMult = 60 * 1000
   // Automatic login refresh.
